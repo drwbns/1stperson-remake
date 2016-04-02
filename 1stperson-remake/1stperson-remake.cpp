@@ -4,6 +4,8 @@
 #include "stdafx.h"
 #include "1stperson-remake.h"
 
+#include "Application.h"
+
 #define MAX_LOADSTRING 100
 
 // Global Variables:
@@ -26,6 +28,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: Place code here.
+	Application app;
 
     // Initialize global strings
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
