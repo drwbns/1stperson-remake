@@ -21,7 +21,9 @@ THE SOFTWARE.
 */
 
 
-//#include "GraphicsSystem.h"
+#include "stdafx.h"
+
+#include "GraphicsSystem.h"
 //#include "InputSystem.h"
 //#include "StateSystem.h"
 //#include "GuiSystem.h"
@@ -36,7 +38,7 @@ THE SOFTWARE.
 #include <OGRE/OgreFrameListener.h>
 #include "Application.h"
 
-template<> Application* Ogre::Singleton<Application>::msSingleton = 0;
+template<> Application* Ogre::Singleton<Application>::msSingleton = nullptr;
 
 //Application* Application::getSingletonPtr(void)
 //{
@@ -50,17 +52,18 @@ template<> Application* Ogre::Singleton<Application>::msSingleton = 0;
 
 Application::Application() : GS(nullptr), IS(nullptr), SS(nullptr), GU(nullptr), SN(nullptr), PM(nullptr), PS(nullptr), BB(nullptr), PAM(nullptr)
 {
+	Initialize();
 }
 
-Application::~Application()
-{
-	Finalize();
-}
+//Application::~Application()
+//{
+//	Finalize();
+//}
 
 void Application::Initialize()
 {
-/*	GS = new GraphicsSystem();
-	IS = new InputSystem();
+	GS = new GraphicsSystem();
+/*	IS = new InputSystem();
 	SS = new StateSystem();
 	GU = new GuiSystem();
 	SN = new zzzSndSystem();
@@ -79,8 +82,8 @@ void Application::Initialize()
 	//PAM->Initialize();//do it in states
 
 	//go
-	SS->LoadState("game");
-	GS->Start();*/
+	SS->LoadState("game");*/
+	GS->Start();
 }
 
 void Application::Finalize() const

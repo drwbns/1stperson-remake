@@ -46,7 +46,6 @@ class Application : public Ogre::Singleton<Application>, public Ogre::GeneralAll
 {
 public:
 	Application();
-	~Application();
 	//static Application& getSingleton();
 	//static Application* getSingletonPtr();
 
