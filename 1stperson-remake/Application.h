@@ -24,6 +24,7 @@ THE SOFTWARE.
 #define Application_H_
 #include <OGRE/OgreFrameListener.h>
 #include <OgreSingleton.h>
+#include "main.h"
 
 class GraphicsSystem;
 class InputSystem;
@@ -42,7 +43,7 @@ class ParticleManager;
 
 #define APP Ogre::Singleton<Application>::getSingletonPtr()
 
-class Application : public Ogre::Singleton<Application>, public Ogre::GeneralAllocatedObject, public Ogre::FrameListener
+class Application : public Ogre::Singleton<Application>, public Ogre::GeneralAllocatedObject, public SampleApplication
 {
 public:
 	Application();

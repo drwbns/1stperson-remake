@@ -34,7 +34,6 @@ THE SOFTWARE.
 //#include "ParticleManager.h"
 //#include <Application.h>
 //#include <GlobalVars.h>
-#include "stdafx.h"
 #include <OGRE/OgreFrameListener.h>
 #include "Application.h"
 
@@ -52,7 +51,7 @@ template<> Application* Ogre::Singleton<Application>::msSingleton = nullptr;
 
 Application::Application() : GS(nullptr), IS(nullptr), SS(nullptr), GU(nullptr), SN(nullptr), PM(nullptr), PS(nullptr), BB(nullptr), PAM(nullptr)
 {
-	Initialize();
+	//Initialize();
 }
 
 //Application::~Application()
