@@ -26,27 +26,27 @@ void SampleApplication::createScene()
 
 								   // ACTION!!!
 								   // Fill the scene with some razors
-	SceneNode* razorNode;
-	Entity* razorEntity;
-	for (unsigned int i = 0; i < 30; ++i)
-	{
-		razorNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(StringConverter::toString(i), Vector3(Math::RangeRandom(-1000, 1000), 0, Math::RangeRandom(-1000, 1000)));
-		razorEntity = mSceneMgr->createEntity(StringConverter::toString(i), "razor.mesh");
-		razorNode->attachObject(razorEntity);
-	}
+//	SceneNode* razorNode;
+//	Entity* razorEntity;
+//	for (unsigned int i = 0; i < 30; ++i)
+//	{
+//		razorNode = mSceneMgr->getRootSceneNode()->createChildSceneNode(StringConverter::toString(i), Vector3(Math::RangeRandom(-1000, 1000), 0, Math::RangeRandom(-1000, 1000)));
+//		razorEntity = mSceneMgr->createEntity(StringConverter::toString(i), "razor.mesh");
+//		razorNode->attachObject(razorEntity);
+//	}
 
 	// creating plane
-	Plane plane(Vector3::UNIT_Y, 0);
-	MeshManager::getSingleton().createPlane("ground", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-		plane, 12000, 12000, 1, 1, true, 1, 50, 50, Vector3::UNIT_Z);
-	// placing plane
-	Entity* entGround = mSceneMgr->createEntity("GroundEntity", "ground");
-
-	mSceneMgr->getRootSceneNode()->createChildSceneNode(Vector3(0, 0, 0))->attachObject(entGround);
-
-	// texturing plane
-	entGround->setMaterialName("Examples/Rockwall");
-	entGround->setCastShadows(false);
+//	Plane plane(Vector3::UNIT_Y, 0);
+//	MeshManager::getSingleton().createPlane("ground", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+//		plane, 12000, 12000, 1, 1, true, 1, 50, 50, Vector3::UNIT_Z);
+//	// placing plane
+//	Entity* entGround = mSceneMgr->createEntity("GroundEntity", "ground");
+//
+//	mSceneMgr->getRootSceneNode()->createChildSceneNode(Vector3(0, 0, 0))->attachObject(entGround);
+//
+//	// texturing plane
+//	entGround->setMaterialName("Examples/Rockwall");
+//	entGround->setCastShadows(false);
 
 	// Main character
 	// mChar = new OgreCharacter ("Ogre 1", mSceneMgr);
