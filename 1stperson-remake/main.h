@@ -40,12 +40,7 @@ class SampleApplication : public BaseApplication
 	void destroyScene(void) override
      {
      }
-     void createFrameListener(void)
-     {
-         // This is where we instantiate our own frame listener
-         //mFrameListener= new SampleListener(mWindow, mCamera);
-         mRoot->addFrameListener(this);
-     }
+
  };
 
 

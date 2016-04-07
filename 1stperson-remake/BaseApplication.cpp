@@ -24,7 +24,7 @@ This source file is part of the
 #include <utility>
 
 
-template<> BaseApplication* Singleton<BaseApplication>::msSingleton = 0;
+template<> BaseApplication* Singleton<BaseApplication>::msSingleton = nullptr;
 
 BaseApplication* BaseApplication::getSingletonPtr(void)
 {
@@ -53,7 +53,7 @@ BaseApplication::BaseApplication(void)
     mFiltering(),
 	mAniso(0),
 	mSceneDetailIndex(0),
-	mRoot(0), mCamera(0), mSceneMgr(0), mWindow(0), mResourcesCfg(BLANKSTRING), mPluginsCfg(BLANKSTRING), mTrayMgr(0), mDetailsPanel(0), mCursorWasVisible(false), mShutDown(false), mInputManager(0), mMouse(0), mKeyboard(0)
+	mRoot(nullptr), mCamera(nullptr), mSceneMgr(nullptr), mWindow(nullptr), mResourcesCfg(BLANKSTRING), mPluginsCfg(BLANKSTRING), mTrayMgr(nullptr), mDetailsPanel(nullptr), mCursorWasVisible(false), mShutDown(false)
     {
 }
 
@@ -108,22 +108,14 @@ void BaseApplication::createCamera(void)
 //-------------------------------------------------------------------------------------
 void BaseApplication::createFrameListener(void)
 {
-    LogManager::getSingletonPtr()->logMessage("*** Initializing OIS ***");
-    OIS::ParamList pl;
     size_t windowHnd = 0;
-    std::ostringstream windowHndStr;
+    std::stringstream windowHndStr;
 
     mWindow->getCustomAttribute("WINDOW", &windowHnd);
     windowHndStr << windowHnd;
-    //pl.insert(std::make_pair(std::string("WINDOW"), windowHndStr.str()));
+	
 
-    mInputManager = OIS::InputManager::createInputSystem( pl );
 
-    mKeyboard = static_cast<OIS::Keyboard*>(mInputManager->createInputObject( OIS::OISKeyboard, true ));
-    mMouse = static_cast<OIS::Mouse*>(mInputManager->createInputObject( OIS::OISMouse, true ));
-
-    mMouse->setEventCallback(this);
-    mKeyboard->setEventCallback(this);
 
     //Set initial mouse clipping size
     windowResized(mWindow);
@@ -132,7 +124,7 @@ void BaseApplication::createFrameListener(void)
     WindowEventUtilities::addWindowEventListener(mWindow, this);
 
 	OgreBites::InputContext input;
-	input.mMouse = mMouse;
+	//input.mMouse = mMouse;
     mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, input, this);
 
     mTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
@@ -268,8 +260,8 @@ bool BaseApplication::frameRenderingQueued(const FrameEvent& evt)
         return false;
 
     //Need to capture/update each device
-    mKeyboard->capture();
-    mMouse->capture();
+    //mKeyboard->capture();
+   // mMouse->capture();
 
     mTrayMgr->frameRenderingQueued(evt);
 
@@ -450,7 +442,7 @@ bool BaseApplication::frameRenderingQueued(const FrameEvent& evt)
 
 	 // Switch whether cam is locked to player or free 
 	 //( **** fixed cam while not rotating with CTRL button ( fixedCam = true ) ****)
-	 if (mKeyboard->isKeyDown (OIS::KC_F5) && mTimeUntilNextToggle <= 0) {
+/*	 if (mKeyboard->isKeyDown (OIS::KC_F5) && mTimeUntilNextToggle <= 0) {
 		 switch(fixedCam){
 				case 0:
 					fixedCam = true;
@@ -490,40 +482,40 @@ bool BaseApplication::frameRenderingQueued(const FrameEvent& evt)
 		MaterialManager::getSingleton().setDefaultAnisotropy(mAniso);
 
 		mTimeUntilNextToggle = 1;
-	}
+	}*/
 
-	if(mKeyboard->isKeyDown(OIS::KC_SYSRQ) && mTimeUntilNextToggle <= 0)
-	{
-		std::ostringstream ss;
-		BASE->getWindow()->writeContentsToFile(ss.str());
-		mTimeUntilNextToggle = 0.5;
-	}
+//	if(mKeyboard->isKeyDown(OIS::KC_SYSRQ) && mTimeUntilNextToggle <= 0)
+//	{
+//		std::ostringstream ss;
+//		BASE->getWindow()->writeContentsToFile(ss.str());
+//		mTimeUntilNextToggle = 0.5;
+//	}
 
-	if(mKeyboard->isKeyDown(OIS::KC_R) && mTimeUntilNextToggle <=0)
-	{
-		mSceneDetailIndex = (mSceneDetailIndex+1)%3 ;
-		switch(mSceneDetailIndex) {
-			case 0 : BASE->getCamera()->setPolygonMode(PM_SOLID); break;
-			case 1 : BASE->getCamera()->setPolygonMode(PM_WIREFRAME); break;
-			case 2 : BASE->getCamera()->setPolygonMode(PM_POINTS); break;
-		}
-		mTimeUntilNextToggle = 0.5;
-	}
+//	if(mKeyboard->isKeyDown(OIS::KC_R) && mTimeUntilNextToggle <=0)
+//	{
+//		mSceneDetailIndex = (mSceneDetailIndex+1)%3 ;
+//		switch(mSceneDetailIndex) {
+//			case 0 : BASE->getCamera()->setPolygonMode(PM_SOLID); break;
+//			case 1 : BASE->getCamera()->setPolygonMode(PM_WIREFRAME); break;
+//			case 2 : BASE->getCamera()->setPolygonMode(PM_POINTS); break;
+//		}
+//		mTimeUntilNextToggle = 0.5;
+//	}
 
-	static bool displayCameraDetails = false;
-	if(mKeyboard->isKeyDown(OIS::KC_P) && mTimeUntilNextToggle <= 0)
-	{
-		displayCameraDetails = !displayCameraDetails;
-		mTimeUntilNextToggle = 0.5;
-	}
+	//static bool displayCameraDetails = false;
+//	if(mKeyboard->isKeyDown(OIS::KC_P) && mTimeUntilNextToggle <= 0)
+//	{
+//		displayCameraDetails = !displayCameraDetails;
+//		mTimeUntilNextToggle = 0.5;
+//	}
 
 	// Decrease time for next available keypress
 	if (mTimeUntilNextToggle >= 0)
 		mTimeUntilNextToggle -= evt.timeSinceLastFrame;
 
 	 // Exit if we press Esc
-	 if(mKeyboard->isKeyDown (OIS::KC_ESCAPE))
-		 return false;
+//	 if(mKeyboard->isKeyDown (OIS::KC_ESCAPE))
+//		 return false;
 
     return true;
 }
@@ -653,9 +645,9 @@ void BaseApplication::windowResized(RenderWindow* rw)
     int left, top;
     rw->getMetrics(width, height, depth, left, top);
 
-    const OIS::MouseState &ms = mMouse->getMouseState();
-    ms.width = width;
-    ms.height = height;
+   // const OIS::MouseState &ms = mMouse->getMouseState();
+   // ms.width = width;
+    //ms.height = height;
 }
 
 //Unattach OIS before window shutdown (very important under Linux)
@@ -664,13 +656,13 @@ void BaseApplication::windowClosed(RenderWindow* rw)
     //Only close for window that created OIS (the main window in these demos)
     if( rw == mWindow )
     {
-        if( mInputManager )
-        {
-            mInputManager->destroyInputObject( mMouse );
-            mInputManager->destroyInputObject( mKeyboard );
-
-            OIS::InputManager::destroyInputSystem(mInputManager);
-            mInputManager = 0;
-        }
+//        if( mInputManager )
+//        {
+//            mInputManager->destroyInputObject( mMouse );
+//            mInputManager->destroyInputObject( mKeyboard );
+//
+//            OIS::InputManager::destroyInputSystem(mInputManager);
+//            mInputManager = 0;
+//        }
     }
 }

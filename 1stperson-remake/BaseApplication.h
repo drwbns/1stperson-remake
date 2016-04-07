@@ -24,9 +24,8 @@ This source file is part of the
 #include <OGRE/OgreSceneManager.h>
 #include <OGRE/OgreRenderWindow.h>
 
-#include <OIS/OISInputManager.h>
-#include <OIS/OISKeyboard.h>
-#include <OIS/OISMouse.h>
+//#include <OIS/OISKeyboard.h>
+//#include <OIS/OISMouse.h>
 
 #include <SdkTrays.h>
 
@@ -48,12 +47,12 @@ public:
 	static BaseApplication* getSingletonPtr();
 
 	RenderWindow* getWindow() { return mWindow; };
-	OIS::Mouse * getMouse() { return mMouse; };
-	OIS::Keyboard* getKeyboard() { return mKeyboard; }
+	//OIS::Mouse * getMouse() { return mMouse; };
+	//OIS::Keyboard* getKeyboard() { return mKeyboard; }
 	Camera* getCamera() { return mCamera; }
 	SceneManager* getSceneMgr() { return mSceneMgr; }
 	Root* getRoot() { return mRoot; } 
-	OIS::InputManager* getInputMgr() { return mInputManager; } 
+	//OIS::InputManager* getInputMgr() { return mInputManager; } 
 
     virtual void go(void);
 
@@ -125,11 +124,6 @@ protected:
     OgreBites::ParamsPanel* mDetailsPanel;     // sample details panel
     bool mCursorWasVisible;                    // was cursor visible before dialog appeared
     bool mShutDown;
-
-    //OIS Input devices
-    OIS::InputManager* mInputManager;
-    OIS::Mouse*    mMouse;
-    OIS::Keyboard* mKeyboard;
 };
 
 #endif // #ifndef __BaseApplication_h_
