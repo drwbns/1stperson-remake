@@ -33,13 +33,6 @@ class SampleApplication : public BaseApplication
      ~SampleApplication()
      {
      }
- protected:
-     // Just override the mandatory create scene method
-	void createScene(void) override;
-
-	void destroyScene(void) override
-     {
-     }
 
  };
 

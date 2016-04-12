@@ -70,18 +70,18 @@ void Application::Initialize()
 	PS = new PhysicsSystem();
 	BB = new BillboardSystem();
 	PAM = new ParticleManager();
-
+	*/
 	GS->Initialize();
-	IS->Initialize();
-	GU->Initialize();
-	SN->Initialize();
-	PM->Initialize();
+//	IS->Initialize();
+//	GU->Initialize();
+//	SN->Initialize();
+//	PM->Initialize();
 	//PS->Initialize();//do it in states
 	//BB->Initialize();//do it in states
 	//PAM->Initialize();//do it in states
 
 	//go
-	SS->LoadState("game");*/
+//	SS->LoadState("game");*/
 	GS->Start();
 }
 
