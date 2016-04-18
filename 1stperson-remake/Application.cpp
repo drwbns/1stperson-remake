@@ -33,9 +33,10 @@ THE SOFTWARE.
 //#include "BillboardSystem.h"
 //#include "ParticleManager.h"
 //#include <Application.h>
-//#include <GlobalVars.h>
 #include <OGRE/OgreFrameListener.h>
 #include "Application.h"
+#include "GlobalVars.h"
+#include "StateSystem.h"
 
 template<> Application* Ogre::Singleton<Application>::msSingleton = nullptr;
 
@@ -62,9 +63,9 @@ Application::Application() : GS(nullptr), IS(nullptr), SS(nullptr), GU(nullptr),
 void Application::Initialize()
 {
 	GS = new GraphicsSystem();
-/*	IS = new InputSystem();
+//	IS = new InputSystem();
 	SS = new StateSystem();
-	GU = new GuiSystem();
+/*	GU = new GuiSystem();
 	SN = new zzzSndSystem();
 	PM = new ProjectileManager();
 	PS = new PhysicsSystem();
@@ -81,7 +82,7 @@ void Application::Initialize()
 	//PAM->Initialize();//do it in states
 
 	//go
-//	SS->LoadState("game");*/
+	SS->LoadState("game");
 	GS->Start();
 }
 
@@ -90,17 +91,17 @@ void Application::Finalize() const
 //	//PS->Finalize();//do it in states
 //	//BB->Finalize();//do it in states
 //	//PAM->Finalize();//do it in states
-//	SS->UnloadCurrentState();
+	SS->UnloadCurrentState();
 //	PM->Finalize();
 //	IS->Finalize();
 //	GU->Finalize();
 //	SN->Finalize();
-//	GS->Finalize();
+	GS->Finalize();
 }
 
 bool Application::frameStarted(const Ogre::FrameEvent& evt)
 {
-/*	//ticks
+	//ticks
 	GlobalVars::Tick = evt.timeSinceLastFrame;
 	if (GlobalVars::Tick > 1.0)
 	{
@@ -125,7 +126,7 @@ bool Application::frameStarted(const Ogre::FrameEvent& evt)
 	//BB->Update();//do it in states
 	//PAM->Update();//do it in states
 	SS->Update();
-	IS->Update(evt);
+/*	IS->Update(evt);
 	GU->Update();
 	SN->Update();
 	PM->Update();*/
