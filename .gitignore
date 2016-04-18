@@ -246,3 +246,4 @@ ModelManifest.xml
 *.dflginspxe
 *.infoinspxe
 /1stperson-remake.VC.db
+*.sln
