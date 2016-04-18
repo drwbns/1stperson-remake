@@ -74,7 +74,7 @@ void StateSystem::UnloadCurrentState()
 	}
 }
 	
-void StateSystem::Update()
+void StateSystem::Update() const
 {
 	if (mState)
 	{

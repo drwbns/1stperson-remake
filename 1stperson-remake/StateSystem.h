@@ -38,7 +38,7 @@ public:
 
 	void LoadState(Ogre::String Name);
 	void UnloadCurrentState();
-	void Update();
+	void Update() const;
 	State* GetCurrentState() { return mState; }
 	
 private:
