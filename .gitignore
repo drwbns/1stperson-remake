@@ -245,5 +245,10 @@ ModelManifest.xml
 *.inspxeproj
 *.dflginspxe
 *.infoinspxe
-*.sln
-*.db
+/1stperson-remake/*.rc
+/1stperson-remake/*.ico
+/1stperson-remake/*.filters
+/1stperson-remake/*.vcxproj
+/*.db
+/*.opendb
+/*.sln
